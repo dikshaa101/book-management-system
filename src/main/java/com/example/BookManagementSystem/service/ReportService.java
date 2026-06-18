@@ -169,21 +169,6 @@ public class ReportService {
 
         writer.write("\n");
 
-        writer.write("AUTHOR WISE REPORT\n");
-        writer.write("--------------------------------------------------\n");
-
-        for (Map.Entry<String, Long> entry : authorCount.entrySet()) {
-
-            writer.write(
-                    entry.getKey()
-                            + " : "
-                            + entry.getValue()
-                            + " Books\n"
-            );
-        }
-
-        writer.write("\n");
-
         writer.write("PUBLISHER WISE REPORT\n");
         writer.write("--------------------------------------------------\n");
 
