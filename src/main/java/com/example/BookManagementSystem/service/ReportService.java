@@ -20,6 +20,24 @@ public class ReportService {
 
         List<Book> books = jsonReaderService.readJson();
 
+        if (books.isEmpty()) {
+
+            FileWriter writer =
+                    new FileWriter("report.txt");
+
+            writer.write("BOOK MANAGEMENT REPORT\n");
+            writer.write("\n");
+            writer.write("========================\n\n");
+            writer.write("\n");
+            writer.write("No book data available.\n");
+
+            writer.close();
+
+            System.out.println("Report Generated Successfully");
+
+            return;
+        }
+
         int totalBooks = books.size();
 
         double averagePrice =

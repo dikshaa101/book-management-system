@@ -11,16 +11,31 @@ import java.util.List;
 @Service
 public class JsonReaderService {
 
-    public List<Book> readJson() throws Exception {
+    public List<Book> readJson() {
 
-        ObjectMapper mapper =
-                new ObjectMapper();
+        try {
 
-        return Arrays.asList(
-                mapper.readValue(
-                        new File("books.json"),
-                        Book[].class
-                )
-        );
+            File file =
+                    new File("books.json");
+
+            if (!file.exists()) {
+
+                return List.of();
+            }
+
+            ObjectMapper mapper =
+                    new ObjectMapper();
+
+            return Arrays.asList(
+                    mapper.readValue(
+                            file,
+                            Book[].class
+                    )
+            );
+
+        } catch (Exception ex) {
+
+            return List.of();
+        }
     }
 }

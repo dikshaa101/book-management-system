@@ -19,15 +19,27 @@ public class DataInitializer {
     private final ReportService reportService;
 
     @PostConstruct
-    public void init() throws Exception {
+    public void init() {
 
-        List<Book> books =
-                csvReaderService.readBooks();
+        try {
 
-        jsonGeneratorService.generateJson(books);
+            List<Book> books =
+                    csvReaderService.readBooks();
 
-        reportService.generateReport();
+            jsonGeneratorService.generateJson(books);
 
-        System.out.println("JSON Created Successfully");
+            reportService.generateReport();
+
+            System.out.println(
+                    "Application initialized successfully"
+            );
+
+        } catch (Exception ex) {
+
+            System.out.println(
+                    "Initialization failed: "
+                            + ex.getMessage()
+            );
+        }
     }
 }
